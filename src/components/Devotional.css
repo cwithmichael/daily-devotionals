@@ -1,0 +1,15 @@
+.devotional > li {
+    list-style: none;
+    text-align: center;
+}
+
+
+#title {
+    color: black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+#brief {
+    color: rgb(103, 233, 172); 
+    font-size: 30px;   
+}

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import {
-  fetchDevotionals } from './actions'
+import { fetchDevotionals } from './actions'
 import DevotionalList from './components/DevotionalList'
+import './App.css'
 
 class App extends Component {
   constructor(props) {
@@ -23,21 +23,21 @@ class App extends Component {
   render() {
     const { devotionals, isFetching, lastUpdated } = this.props
     return (
-      <div>
-        <p>
+      <div className="containerFluid">
+        <h1>Daily Devotionals</h1>
+        {isFetching && devotionals.length === 0 && <h2>Loading...</h2>}
+        {!isFetching && devotionals.length === 0 && <h2>Empty.</h2>}
+        { devotionals.items &&      
+            <DevotionalList devotionals={devotionals.items} onClick={this.onClick}/>
+        }
+        <br/><br/>
+        <p id="updated">
           {lastUpdated &&
             <span>
               Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
               {' '}
             </span>}
         </p>
-        {isFetching && devotionals.length === 0 && <h2>Loading...</h2>}
-        {!isFetching && devotionals.length === 0 && <h2>Empty.</h2>}
-        { devotionals.items && 
-          <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <DevotionalList devotionals={devotionals.items} onClick={this.onClick}/>
-          </div>
-        }
       </div>
     )
   }

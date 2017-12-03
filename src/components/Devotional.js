@@ -1,19 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
+import './Devotional.css'
 
 const Devotional = ({ onClick, title, brief, content, publish_date, verses }) => (
-  <div>
+  <div className="row">
+  <div className="col-sm-4"></div>
+  <div className="col-sm-4 devotional">
     <li
       onClick={onClick}
     >
-      Title: {title}
-      <br/>
-      Description: {brief}
-      <br />
-      Publish Date: {moment(publish_date.toString()).format('MMM Do YY')}
+      <h2 id="title">{title}</h2>
+      <p id="brief">{brief}</p>
+      <p id="pub">{moment(publish_date.toString()).format('MMM Do YY')}</p>
     </li>
     <br />
+  </div>
+  <div className="col-sm-4"></div>
   </div>
 )
 
