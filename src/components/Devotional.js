@@ -15,7 +15,7 @@ const Devotional = ({ onClick, title, brief, content, publish_date, verses }) =>
       <p id="pub">{moment(publish_date).format('MMM Do YY')}</p>
       <p style={{textDecorationLine: "underline"}}>Verses</p>
       <div className="verses">
-      {verses.map((v, index) => 
+      {verses && verses.map((v, index) => 
       <p key={index}>{v + " "}</p>)
       }
       </div>
