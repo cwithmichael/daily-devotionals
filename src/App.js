@@ -12,7 +12,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { dispatch} = this.props
+    const { dispatch } = this.props
     dispatch(fetchDevotionals())
   }
 
@@ -24,7 +24,7 @@ class App extends Component {
     const { devotionals, isFetching, lastUpdated } = this.props
     return (
       <div className="containerFluid">
-        <h1>Daily Devotionals</h1>
+        <h1 className="jumbotron" style={{textAlign:"center"}}>Daily Devotionals</h1>
         {isFetching && devotionals.length === 0 && <h2>Loading...</h2>}
         {!isFetching && devotionals.length === 0 && <h2>Empty.</h2>}
         { devotionals.items &&      

@@ -20,23 +20,25 @@ function receiveDevotionals(json) {
 export function fetchDevotionals() {
     return dispatch => {
         dispatch(requestDevotionals())
-        return fetch('http://localhost:8080/api/v1/devotionals')
+        return fetch('http://localhost:5000/api/v1/devotionals')
             .then(response => response.json())
             .then(json => dispatch(receiveDevotionals(json)))
             .catch(err => {
                 console.log(err)
                 var json = [
                     {
-                        "ID": "1",
+                        "_id": {$oid:1},
                         "title":"Devotional Test 1", "brief":"Test", 
                         "content":"this is a test", 
-                        "publish_date": "20110707"
+                        "publish_date": new Date(),
+                        "verses": ["John 3:16", "Exodus: 4:4"]
                     },
                     {
-                        "ID": "2",
+                        "_id": {$oid:2},
                         "title":"Devotional Test 2", "brief":"Test 2", 
-                        "content":"this is a test 2", 
-                        "publish_date": "20171129"
+                        "content":"this is a test 2",
+                        "publish_date": new Date(),
+                        "verses": ["John 3:16", "Exodus: 4:4"]                        
                     }
                 ]
                 dispatch(receiveDevotionals(json))

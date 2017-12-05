@@ -3,6 +3,13 @@
     text-align: center;
 }
 
+.row {
+    border-bottom-style: ridge;
+}
+
+.verses > li {
+    white-space: nowrap;
+}
 
 #title {
     color: black;

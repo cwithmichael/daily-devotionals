@@ -12,9 +12,14 @@ const Devotional = ({ onClick, title, brief, content, publish_date, verses }) =>
     >
       <h2 id="title">{title}</h2>
       <p id="brief">{brief}</p>
-      <p id="pub">{moment(publish_date.toString()).format('MMM Do YY')}</p>
+      <p id="pub">{moment(publish_date).format('MMM Do YY')}</p>
+      <p style={{textDecorationLine: "underline"}}>Verses</p>
+      <div className="verses">
+      {verses.map((v, index) => 
+      <p key={index}>{v + " "}</p>)
+      }
+      </div>
     </li>
-    <br />
   </div>
   <div className="col-sm-4"></div>
   </div>
@@ -25,7 +30,7 @@ Devotional.propTypes = {
   title: PropTypes.string.isRequired,
   brief: PropTypes.string.isRequired,
   content: PropTypes.string,
-  publishDate: PropTypes.string,
+  publishDate: PropTypes.instanceOf(Date),
   verses: PropTypes.array
   
 }
