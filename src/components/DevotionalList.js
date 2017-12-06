@@ -5,7 +5,7 @@ import Devotional from './Devotional'
 const DevotionalList = ({ devotionals, onClick }) => (
   <ul>
     {devotionals.map((devotional) => (
-      <Devotional key={devotional._id.$oid} {...devotional} onClick={() => onClick(devotional.ID)} />
+      <Devotional key={devotional.id} {...devotional} onClick={() => onClick(devotional.ID)} />
     ))}
   </ul>
 )
@@ -13,11 +13,11 @@ const DevotionalList = ({ devotionals, onClick }) => (
 DevotionalList.propTypes = {
   devotionals: PropTypes.arrayOf(
     PropTypes.shape({
-      _id: PropTypes.object.isRequired,
+      id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       brief: PropTypes.string.isRequired,
       content: PropTypes.string,
-      publish_date: PropTypes.object,
+      publish_date: PropTypes.string,
       verses: PropTypes.array
     }).isRequired
   ).isRequired,
