@@ -2,10 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Devotional from './Devotional'
 
-const DevotionalList = ({ devotionals, onClick }) => (
+const DevotionalList = ({ devotionals, onClick, showDevotional, activeDevotional}) => (
   <ul>
     {devotionals.map((devotional) => (
-      <Devotional key={devotional.id} {...devotional} onClick={() => onClick(devotional.ID)} />
+      <Devotional 
+        key={devotional.id} 
+        {...devotional} 
+        onClick={() => onClick(devotional.id)} 
+        showDevotional={showDevotional} 
+        activeDevotional={activeDevotional}
+        devotionalId={devotional.id}/>
     ))}
   </ul>
 )
@@ -21,7 +27,9 @@ DevotionalList.propTypes = {
       verses: PropTypes.array
     }).isRequired
   ).isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  showDevotional: PropTypes.bool.isRequired,
+  activeDevotional: PropTypes.number.isRequired
 }
 
 export default DevotionalList

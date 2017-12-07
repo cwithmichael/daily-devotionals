@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import './Devotional.css'
 
-const Devotional = ({ onClick, title, brief, content, publish_date, verses }) => (
+const Devotional = ({ onClick, showDevotional, activeDevotional, devotionalId, title, brief, content, publish_date, verses }) => (
   <div className="row">
   <div className="col-sm-4"></div>
   <div className="col-sm-4 devotional">
@@ -13,12 +13,13 @@ const Devotional = ({ onClick, title, brief, content, publish_date, verses }) =>
       <h2 id="title">{title}</h2>
       <p id="brief">{brief}</p>
       <p id="pub">{moment(publish_date).format('MMM Do YY')}</p>
+      {showDevotional && devotionalId === activeDevotional &&
+      <div>
+        <p className="content"> {content} </p>
       <p style={{textDecorationLine: "underline"}}>Verses</p>
-      <div className="verses">
-      {verses && verses.map((v, index) => 
-      <p key={index}>{v + " "}</p>)
-      }
+        {verses && verses.map((v, index) => <p className="verses" key={index}>{v + " "}</p>)}
       </div>
+      }
     </li>
   </div>
   <div className="col-sm-4"></div>
@@ -27,6 +28,8 @@ const Devotional = ({ onClick, title, brief, content, publish_date, verses }) =>
 
 Devotional.propTypes = {
   onClick: PropTypes.func.isRequired,
+  showDevotional: PropTypes.bool.isRequired,
+  activeDevotional: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   brief: PropTypes.string.isRequired,
   content: PropTypes.string,

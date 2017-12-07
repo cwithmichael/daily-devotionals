@@ -3,6 +3,10 @@
     text-align: center;
 }
 
+.content {
+    margin-bottom: 1em;
+}
+
 .row {
     border-bottom-style: ridge;
 }

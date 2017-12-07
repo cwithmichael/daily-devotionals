@@ -9,6 +9,10 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.onClick = this.onClick.bind(this)
+    this.state = {
+     devotionalActive: false,
+     activeDevotionalId: -1
+    }
   }
 
   componentDidMount() {
@@ -16,19 +20,31 @@ class App extends Component {
     dispatch(fetchDevotionals())
   }
 
-  onClick() {
-    console.log('lol')
+  onClick(devotionalId) {
+    let devotionalState = !this.state.devotionalActive
+    this.setState({
+      devotionalActive: devotionalState,
+      activeDevotionalId: devotionalId
+    })
   }
 
   render() {
     const { devotionals, isFetching, lastUpdated } = this.props
+    let showDevotional = false
+    if (this.state.devotionalActive) {
+      showDevotional = true
+    }
     return (
       <div className="containerFluid">
         <h1 className="jumbotron" style={{textAlign:"center"}}>Daily Devotionals</h1>
         {isFetching && devotionals.length === 0 && <h2>Loading...</h2>}
         {!isFetching && devotionals.length === 0 && <h2>Empty.</h2>}
         { devotionals.items &&      
-            <DevotionalList devotionals={devotionals.items} onClick={this.onClick}/>
+            <DevotionalList 
+              devotionals={devotionals.items} 
+              onClick={this.onClick} 
+              showDevotional={showDevotional} 
+              activeDevotional={this.state.activeDevotionalId}/>
         }
         <br/><br/>
         <p id="updated">
