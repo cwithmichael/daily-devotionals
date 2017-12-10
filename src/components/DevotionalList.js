@@ -6,12 +6,12 @@ const DevotionalList = ({ devotionals, onClick, showDevotional, activeDevotional
   <ul>
     {devotionals.map((devotional) => (
       <Devotional 
-        key={devotional.id} 
+        key={devotional._id.$oid} 
         {...devotional} 
-        onClick={() => onClick(devotional.id)} 
+        onClick={() => onClick(devotional._id.$oid)} 
         showDevotional={showDevotional} 
         activeDevotional={activeDevotional}
-        devotionalId={devotional.id}/>
+        devotionalId={devotional._id.$oid}/>
     ))}
   </ul>
 )
@@ -19,8 +19,8 @@ const DevotionalList = ({ devotionals, onClick, showDevotional, activeDevotional
 DevotionalList.propTypes = {
   devotionals: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
+      _id: PropTypes.object.isRequired,
+      name: PropTypes.string.isRequired,
       brief: PropTypes.string.isRequired,
       content: PropTypes.string,
       publish_date: PropTypes.string,
@@ -29,7 +29,7 @@ DevotionalList.propTypes = {
   ).isRequired,
   onClick: PropTypes.func.isRequired,
   showDevotional: PropTypes.bool.isRequired,
-  activeDevotional: PropTypes.number.isRequired
+  activeDevotional: PropTypes.string.isRequired
 }
 
 export default DevotionalList

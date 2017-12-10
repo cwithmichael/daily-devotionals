@@ -20,7 +20,7 @@ function receiveDevotionals(json) {
 export function fetchDevotionals() {
     return dispatch => {
         dispatch(requestDevotionals())
-        return fetch('http://localhost:5000/api/v1/devotionals')
+        return fetch('http://localhost:8080/api/v1/devotionals')
             .then(response => response.json())
             .then(json => dispatch(receiveDevotionals(json)))
             .catch(err => {

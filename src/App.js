@@ -11,7 +11,7 @@ class App extends Component {
     this.onClick = this.onClick.bind(this)
     this.state = {
      devotionalActive: false,
-     activeDevotionalId: -1
+     activeDevotionalId: ""
     }
   }
 
